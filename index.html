@@ -52,7 +52,9 @@
         border-radius: 0px 0px 200px 0px;
     }
     .right-side {
-        padding: 90px;
+        display: flex;
+        padding-right: 90px;
+        padding-left: 90px;
         flex: 1;
     }
 
@@ -92,7 +94,7 @@
         color: white;
         width: 352px;
         height: 56px;
-        margin-top: 16px;
+        margin-top: 76px;
     }
     label {
         margin-bottom: 8px;
@@ -109,8 +111,16 @@
         font-weight: 300;
         padding: 16px;
     }
+    #account-register {
+        width: 100%;
+        margin-top: 16px;
+        font-size: 20px;
+    }
     .buttons {
+        margin-top: 8px;
         display: flex;
+        align-items: flex-end;
+        flex-direction: column;
     }
     .entry-item {
         display: flex;
@@ -125,10 +135,10 @@
     <script>
         setTimeout(function(){
             $(document).ready(function() {
-                console.log('hiero 1',  $( "#next" ));
                 $( "#next" ).html( "Log in" )
                 $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
-                $( "#myhenco-title" ).append( $(".create p a") )
+                $( "#account-register" ).append( $(".create p a") )
+                $( ".buttons" ).prepend( $(".password-label u") )
             })
         }, 50)
     </script>
@@ -140,7 +150,9 @@
                 <div style="width: 288px" class="flex-column flex-centered">
                     <div class="align-self-start title-txt">Welcome to</div>
                     <div class="align-self-start title-txt mt-h bold">MyHenco</div>
-                    <div id="myhenco-title">Already have an account?</div>
+                    <div id="account-register">
+                        <span>Don't have an account yet?</span>
+                    </div>
                     <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
                     </br>
                     <div>Our goal is to provide a helpful and user-friendly experience for all of our stakeholders.</div>
@@ -149,9 +161,8 @@
                     </select>
                 </div>
             </div>
-            <div class="right-side flex-centered">
-                <div style="width: 70%" class="right-side flex-column flex-centered">
-                    <div class="fw d-flex justify-content-between" style="margin-bottom: 82px">
+                <div style="width: 70%" class="right-side flex-column">
+                    <div class="fw d-flex justify-content-between" style="margin-bottom: 82px; margin-top: 82px">
                         <span class="title-txt">Sign Up</span>
                         <img src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
                     </div>
@@ -208,7 +219,6 @@
                     </form>
 
                 </div>
-            </div>
             </div>
         </div>
     </main>
