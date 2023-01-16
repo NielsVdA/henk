@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style data-emotion="css-global 1vble56">html{
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
@@ -38,11 +40,31 @@
     body::backdrop{
         background-color:#fff;
     }
-
     .main {
         height: 100vh;
         width: 100vw;
         background-color: #f0f3ff;
+    }
+    /*#hidden-countries-menu {*/
+        /*padding: 6px 16px 6px 16px;*/
+        /*padding: 16px;*/
+        /*position: absolute;*/
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*background-color: white;*/
+        /*width: 352px;*/
+        /*height: 50px;*/
+        /*transition: opacity 251ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 167ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;*/
+        /*transform-origin: 60px 0px 0px;*/
+        /*box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;*/
+    /*}*/
+
+    #country-menu{
+        padding: 16px;
+        background-color: white;
+        width: 352px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+
     }
     .left-side {
         height: 100%;
@@ -86,7 +108,7 @@
     #api {
         width: 100%;
     }
-    #next {
+    button {
         margin-left: auto;
         background-color: #0170FF;
         border-radius: 50px;
@@ -104,12 +126,38 @@
     ::placeholder {
         color: #879DB5;
     }
+    ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 600px;
+        list-style-type: none;
+    }
     input {
         border: none;
         color: #001b39;
         height: 56px;
+        width: 352px;
         font-weight: 300;
         padding: 16px;
+    }
+    #country-button {
+        border: none;
+        background: white;
+        color: #001b39;
+        height: 56px;
+        width: 352px;
+        font-weight: 300;
+        padding: 16px;
+    }
+    .ui-button .ui-icon {
+        background-image: none;
+    }
+    select {
+        padding: 16px;
+        border: none;
+        height: 56px;
+        width: 352px;
     }
     #account-register {
         width: 100%;
@@ -122,12 +170,15 @@
         align-items: flex-end;
         flex-direction: column;
     }
+    .country_li {
+        position: relative;
+    }
     .entry-item {
         display: flex;
         flex-direction: column;
     }
     /*hide ms*/
-    .intro,.divider,.create,h1 { display: none; }
+    #cancel,.intro,.divider,.create,.helpLink,h1 { display: none; }
     /*h1 { display: none; }*/
 
     </style>
@@ -139,6 +190,41 @@
                 $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
                 $( "#account-register" ).append( $(".create p a") )
                 $( ".buttons" ).prepend( $(".password-label u") )
+
+                // this means it's a registration page
+                var isRegistration = !!$(".DropdownSingleSelect");
+                if (isRegistration) {
+                   $( "#continue" ).html( "Sign up" )
+                   console.log('joo', );
+
+                    $( "#country" ).selectmenu();
+
+                   // countries select
+                   //  var countries =      $("#country option").map(function(name, val){
+                   //      console.log('option', name, val, val.value);
+                   //      return val.value
+                   //      countries.push($("<div>heey</div>"))
+                   // });
+                   // console.log('cpountrie', countries);
+                   // console.log('cpountrie', countries.get());
+                   // var countryMenu = $("<div id=\"hidden-countries-menu\"></div>");
+                   // countries.get().forEach(function(country){
+                   //     console.log('country', country);
+                   //    countryMenu.append($(`<div>${country}</div>`));
+                   // })
+                   // $("#country").click(function(){
+                   //     console.log('countryMenu")',countryMenu );
+                   //     if (!$("#hidden-countries-menu").length) {
+                   //          $(".country_li").append(countryMenu);
+                   //     } else {
+                   //         $("#hidden-countries-menu").remove();
+                   //     }
+                   // });
+                   // $("#country").change(function(){
+                   //      var value = $("#country option:selected");
+                   // });
+
+                }
             })
         }, 50)
     </script>
@@ -146,6 +232,7 @@
 <body>
     <main>
         <div class="main d-flex">
+
             <div class="left-side flex-centered">
                 <div style="width: 288px" class="flex-column flex-centered">
                     <div class="align-self-start title-txt">Welcome to</div>
@@ -168,55 +255,212 @@
                     </div>
                     <div id="api">
 
-
-                    <div class="heading">
-                        <h1 role="heading">Sign in</h1>
-                    </div>
-                    <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount" aria-label="Sign in with your email address">
+                        <div class="heading">
+                            <h1 role="heading">User Details</h1>
+                        </div>
+                        <div class="buttons">
+                        </div>
                         <div class="intro">
-                            <h2 aria-level="1">
-                                Sign in with your email address
-                            </h2>
+                            <p>Please provide the following details.</p>
                         </div>
-                        <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">
-                            <p></p>
-                        </div>
-                        <div class="entry">
-                            <div class="entry-item">
-                                <label for="email">
-                                    Email Address
-                                </label>
-                                <div class="error itemLevel" aria-hidden="true" role="alert" style="display: none;">
-                                    <p></p>
-                                </div>
-                                <input type="email" id="email" name="Email Address" title="Please enter a valid Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" autofocus="" placeholder="Email Address" aria-label="Email Address">
+                        <form id="attributeVerification" action="JavaScript:void(0);">
+                            <div id="requiredFieldMissing" class="error pageLevel" style="display: none;" aria-hidden="true">A required field is missing. Please fill out all required fields and try again.</div>
+                            <div id="fieldIncorrect" class="error pageLevel" style="display: none;" aria-hidden="true">One or more fields are filled out incorrectly. Please check your entries and try again.</div>
+                            <div id="claimVerificationServerError" class="error pageLevel" style="display: none;" aria-hidden="true"></div>
+                            <div id="attributeList" class="attr">
+                                <ul>
+                                    <li class="EmailBox email_li">
+                                        <div class="attrEntry">
+                                            <label id="email_label" for="email">Email Address*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="email" class="textInput" type="email" placeholder="Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" title="Email address that can be used to contact you." autofocus="autofocus">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Email address that can be used to contact you.">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="Password newPassword_li">
+                                        <div class="attrEntry">
+                                            <label id="newPassword_label" for="newPassword">New Password*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="newPassword" class="textInput" type="password" placeholder="New Password" title="Enter new password" autocomplete="new-password" aria-required="true">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Enter new password">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="Password reenterPassword_li">
+                                        <div class="attrEntry">
+                                            <label id="reenterPassword_label" for="reenterPassword">Confirm New Password*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="reenterPassword" class="textInput" type="password" placeholder="Confirm New Password" title="Confirm new password" autocomplete="new-password" aria-required="true">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Confirm new password">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox extension_phone_number_li">
+                                        <div class="attrEntry">
+                                            <label id="extension_phone_number_label" for="extension_phone_number">phone_number*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="extension_phone_number" class="textInput" type="text" placeholder="phone_number">
+                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox extension_last_name_li">
+                                        <div class="attrEntry">
+                                            <label id="extension_last_name_label" for="extension_last_name">last_name*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="extension_last_name" class="textInput" type="text" placeholder="last_name">
+                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox extension_first_name_li">
+                                        <div class="attrEntry">
+                                            <label id="extension_first_name_label" for="extension_first_name">first_name*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="extension_first_name" class="textInput" type="text" placeholder="first_name">
+                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="DropdownSingleSelect country_li">
+                                        <div class="attrEntry">
+                                            <label id="country_label" for="country">Country/Region*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <select class="dropdown_single" id="country" aria-label="Country/Region">
+                                                <option style="display:none" disabled="disabled" value="" selected="selected">Country/Region
+                                                </option>
+                                                <option value="Afghanistan">Afghanistan
+                                                </option>
+                                                <option value="Åland Islands">Åland Islands
+                                                </option>
+                                                <option value="Albania">Albania
+                                                </option>
+                                            </select>
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="The country/region in which you are located.">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox city_li">
+                                        <div class="attrEntry">
+                                            <label id="city_label" for="city">City*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="city" class="textInput" type="text" placeholder="City" title="The city in which you are located.">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="The city in which you are located.">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox postalCode_li">
+                                        <div class="attrEntry">
+                                            <label id="postalCode_label" for="postalCode">Postal Code*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="postalCode" class="textInput" type="text" placeholder="Postal Code" title="The postal code of your address.">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="The postal code of your address.">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox streetAddress_li">
+                                        <div class="attrEntry">
+                                            <label id="streetAddress_label" for="streetAddress">Street Address*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="streetAddress" class="textInput" type="text" placeholder="Street Address" title="The street address at which you are located.">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="The street address at which you are located.">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="TextBox extension_language_preference_li">
+                                        <div class="attrEntry">
+                                            <label id="extension_language_preference_label" for="extension_language_preference">language_preference*
+                                            </label>
+                                            <div class="error itemLevel" role="alert">
+                                            </div>
+                                            <input id="extension_language_preference" class="textInput" type="text" placeholder="language_preference">
+                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="entry-item">
-                                <div class="password-label">
-                                    <label for="password">Password</label>
-                                    <u><a id="forgotPassword" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/forgotPassword?csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Forgot your password?</a></u>
-                                </div>
-                                <div class="error itemLevel" aria-hidden="true" style="display: none;">
-                                    <p role="alert"></p>
-                                </div>
-                                <input type="password" id="password" name="Password" placeholder="Password" aria-label="Password" autocomplete="current-password" aria-required="true">
-                            </div>
-                            <div class="working"></div>
-
-
                             <div class="buttons">
-                                <button id="next" type="submit" form="localAccountForm">Sign in</button>
+                                <button id="continue" type="submit" form="attributeVerification" aria-disabled="false" aria-label="Create">Create</button><button id="cancel" aria-label="Cancel" formnovalidate="">Cancel</button>
                             </div>
-                        </div>
-                        <div class="divider">
-                            <h2>OR</h2>
-                        </div>
-                        <div class="create">
-                            <p>
-                                Don't have an account?<a id="createAccount" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Sign up now</a>
-                            </p>
-                        </div>
-                    </form>
+
+                            <div class="verifying-modal">
+                                <div id="verifying_blurb"></div>
+                            </div>
+                        </form>
+
+
+
+
+                        <!--                    <div class="heading">-->
+<!--                        <h1 role="heading">Sign in</h1>-->
+<!--                    </div>-->
+<!--                    <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount" aria-label="Sign in with your email address">-->
+<!--                        <div class="intro">-->
+<!--                            <h2 aria-level="1">-->
+<!--                                Sign in with your email address-->
+<!--                            </h2>-->
+<!--                        </div>-->
+<!--                        <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">-->
+<!--                            <p></p>-->
+<!--                        </div>-->
+<!--                        <div class="entry">-->
+<!--                            <div class="entry-item">-->
+<!--                                <label for="email">-->
+<!--                                    Email Address-->
+<!--                                </label>-->
+<!--                                <div class="error itemLevel" aria-hidden="true" role="alert" style="display: none;">-->
+<!--                                    <p></p>-->
+<!--                                </div>-->
+<!--                                <input type="email" id="email" name="Email Address" title="Please enter a valid Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" autofocus="" placeholder="Email Address" aria-label="Email Address">-->
+<!--                            </div>-->
+<!--                            <div class="entry-item">-->
+<!--                                <div class="password-label">-->
+<!--                                    <label for="password">Password</label>-->
+<!--                                    <u><a id="forgotPassword" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/forgotPassword?csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Forgot your password?</a></u>-->
+<!--                                </div>-->
+<!--                                <div class="error itemLevel" aria-hidden="true" style="display: none;">-->
+<!--                                    <p role="alert"></p>-->
+<!--                                </div>-->
+<!--                                <input type="password" id="password" name="Password" placeholder="Password" aria-label="Password" autocomplete="current-password" aria-required="true">-->
+<!--                            </div>-->
+<!--                            <div class="working"></div>-->
+
+
+<!--                            <div class="buttons">-->
+<!--                                <button id="next" type="submit" form="localAccountForm">Sign in</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="divider">-->
+<!--                            <h2>OR</h2>-->
+<!--                        </div>-->
+<!--                        <div class="create">-->
+<!--                            <p>-->
+<!--                                Don't have an account?<a id="createAccount" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Sign up now</a>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </form>-->
 
                 </div>
             </div>
