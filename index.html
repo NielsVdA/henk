@@ -166,6 +166,7 @@
         border: none !important;;
     }
     .ui-selectmenu-menu li div {
+        font-family: Inter;
         border: none !important;;
     }
     .ui-button  {
@@ -231,7 +232,7 @@
                    $( "#continue" ).html( "Sign up" )
                     $("#account-register").remove();
                     $("#henco-title").after("<div class='fw mt'><div>Already have an account?</div>" +
-                        "<div><a id='sign-up-link'> -> Sign up here</a></div></div>");
+                        "<div><a id='sign-up-link' href=''> -> Sign up here</a></div></div>");
                     $('#sign-up-link').click(function(){
                         parent.history.back();
                         return false;
@@ -265,7 +266,7 @@
                     });
                 }
             })
-        }, 100)
+        }, 150)
     </script>
 </head>
 <body>
