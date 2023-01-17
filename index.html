@@ -193,12 +193,13 @@
                 $( ".buttons" ).prepend( $(".password-label u") )
 
                 // this means it's a registration page
-                var isRegistration = !!$(".DropdownSingleSelect");
+                var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
                    $( "#continue" ).html( "Sign up" )
-                   console.log('joo', );
+                   console.log('joo4',  $( "#extension_Country" ).length );
 
-                    $( ".DropdownSingleSelect select" ).selectmenu();
+
+                    $( "#extension_Country" ).selectmenu();
                 }
             })
         }, 50)
