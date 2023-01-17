@@ -151,8 +151,11 @@
         font-weight: 300;
         padding: 16px;
     }
-    .ui-button .ui-icon {
+    .ui-button  {
         background-image: none;
+    }
+    .ui-icon-triangle-1-s {
+        background-image: url(images/ui-icons_454545_256x240.png);
     }
     select {
         padding: 16px;
@@ -195,7 +198,7 @@
                    $( "#continue" ).html( "Sign up" )
                    console.log('joo', );
 
-                    $( "#extension_Country" ).selectmenu();
+                    $( ".DropdownSingleSelect select" ).selectmenu();
                 }
             })
         }, 50)
