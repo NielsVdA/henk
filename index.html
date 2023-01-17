@@ -174,11 +174,26 @@
     .ui-icon-triangle-1-s {
         background-image: url(images/ui-icons_454545_256x240.png);
     }
-    select {
-        padding: 16px;
-        border: none;
-        height: 56px;
-        width: 352px;
+    .telephone-input-container{
+        display: flex;
+        background: white;
+        width: 100%;
+    }
+    .telephone-input-container .ui-selectmenu-button {
+        padding-right: 0;
+    }
+    .telephone-input-container .ui-selectmenu-button, .telephone-input-container .ui-selectmenu-button:hover {
+        color: #001b39 !important;
+        width: 25% !important;
+    }
+    .telephone-input-container input{
+        display: flex;
+        background: white;
+        width: 75%;
+    }
+    .telephone-country-select {
+        background: white;
+        width: 25%;
     }
     #account-register {
         width: 100%;
@@ -212,14 +227,28 @@
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
                    $( "#continue" ).html( "Sign up" )
+
+                    $( "#extension_phone_number" ).wrap( "<div class=\"telephone-input-container\"></div>" );
+                    $( ".telephone-input-container" ).prepend( "  <select class=\"telephone-country-select\">\n" +
+                        "                                                    <option value=\"BE\">BE</option>\n" +
+                        "                                                    <option value=\"NL\">NL</option>\n" +
+                        "                                                    <option value=\"DE\">DE</option>\n" +
+                        "                                                    <option value=\"IT\">IT</option>\n" +
+                        "                                                </select>" );
+
                     // .selectmenu turns select option elements in stylable select components - https://jqueryui.com/selectmenu/#default
                     $( "#extension_Country" ).selectmenu();
                     $( "#extension_Workregion" ).selectmenu();
+                    $( ".telephone-country-select" ).selectmenu({
+                        select: function( event, ui ) {
+                            console.log('telephone-country-select', event, ui, ui.item.value );
+                        }
+                    });
 
                         // alert(new libphonenumber.AsYouType('US').input('213-373-4253'))
                 }
             })
-        }, 400)
+        }, 300)
     </script>
 </head>
 <body>
@@ -339,14 +368,11 @@
                                             </label>
                                             <div class="error itemLevel" role="alert">
                                             </div>
-                                            <select class="dropdown_single" id="extension_Country" aria-label="Country/Region">
-                                              <option style="display:none" disabled="disabled" value="" selected="selected">Country</option>
-                                                <option value="Afghanistan">Afghanistan
-                                                </option>
-                                                <option value="Åland Islands">Åland Islands
-                                                </option>
-                                                <option value="Albania">Albania
-                                                </option>
+                                            <select class="dropdown_single" id="extension_Country" aria-label="Country" style="display: none;">
+                                                <option value="BE">Belgium</option>
+                                                <option value="NL">Netherlands</option>
+                                                <option value="DE">Germany</option>
+                                                <option value="IT">Italy</option>
                                             </select>
                                             <a class="helpLink tiny" href="javascript:void(0)" data-help="The country/region in which you are located.">What is this?
                                             </a>
