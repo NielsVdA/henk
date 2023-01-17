@@ -239,16 +239,24 @@
                     // .selectmenu turns select option elements in stylable select components - https://jqueryui.com/selectmenu/#default
                     $( "#extension_Country" ).selectmenu();
                     $( "#extension_Workregion" ).selectmenu();
+                    var telephoneCountry = 'BE';
                     $( ".telephone-country-select" ).selectmenu({
                         select: function( event, ui ) {
-                            console.log('telephone-country-select', event, ui, ui.item.value );
+                            telephoneCountry = ui.item.value;
                         }
                     });
 
-                        // alert(new libphonenumber.AsYouType('US').input('213-373-4253'))
+                    $( "#extension_phone_number" ).blur(function() {
+                        if (!libphonenumber.isValidPhoneNumber(this.value, telephoneCountry)) {
+                            $(".extension_phone_number_li").append("<div class='phone-error'>phone nr is not valid</div>");
+                        }
+                    });
+                    $( "#extension_phone_number" ).focus(function() {
+                        $(".phone-error").remove();
+                    });
                 }
             })
-        }, 300)
+        }, 200)
     </script>
 </head>
 <body>
