@@ -258,6 +258,12 @@
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
                    $( "#continue" ).html( "Sign up" )
+                   $( "#extension_last_name_label" ).html( "Last name" )
+                   $( "#extension_last_name" ).attr("placeholder", "Last name" )
+                   $( "#extension_first_name_label" ).html( "First name" )
+                   $( "#extension_first_name" ).attr( "placeholder", "First name" )
+                   $( "#extension_phone_number_label" ).html( "Phone number" )
+                   $( "#extension_phone_number" ).attr( "placeholder", "Phone number" )
                     $("#account-register").remove();
                     $("#henco-title").after("<div class='fw mt'><div>Already have an account?</div>" +
                         "<div><a id='sign-up-link' href=''> -> Sign up here</a></div></div>");
