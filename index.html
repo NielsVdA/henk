@@ -67,12 +67,15 @@
         flex: 1;
     }
 
-    .form-select:disabled {
+    .form-select:disabled, .ui-selectmenu-button {
         padding-left: 24px;
         padding-right: 24px;
         background-color: #f0f3ff;
         border-radius: 100px;
         height: 56px;
+    }
+    .ui-selectmenu-menu {
+        border-radius: 100px;
     }
     .image-container {
         width: 100%;
@@ -257,8 +260,12 @@
                         "                                                </select>" );
 
                     // .selectmenu turns select option elements in stylable select components - https://jqueryui.com/selectmenu/#default
-                    $( "#extension_Country" ).selectmenu();
-                    $( "#extension_Workregion" ).selectmenu();
+                    $( "#extension_Country" ).selectmenu({
+                        position: {my : "bottom+130", at: "bottom+10" }
+                    });
+                    $( "#extension_Workregion" ).selectmenu({
+                        position: {my : "bottom+130", at: "bottom+10" }
+                    });
                     var telephoneCountry = 'BE';
                     $( ".telephone-country-select" ).selectmenu({
                         select: function( event, ui ) {
