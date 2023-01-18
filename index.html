@@ -33,6 +33,8 @@
         font-size:16px;
         line-height:1.5;
         background-color:#fff;
+        height: 100vh;
+        width: 100vw;
     }
     @media print{
         body{
@@ -53,17 +55,19 @@
         flex-direction: column;
         color: white;
         width: 496px;
-        height: 100%;
+        /*height: 100%;*/
         border-radius: 0px 0px 200px 0px;
         background-color: #001b39;
     }
     .left-text-container {
         flex-direction: column;
+        flex: 1;
     }
     .right-side {
+        height: 100%;
+        overflow: auto;
         display: flex;
-        padding-right: 90px;
-        padding-left: 90px;
+        padding: 8px 82px 8px 82px;
         flex: 1;
     }
 
@@ -74,11 +78,15 @@
         border-radius: 100px;
         height: 56px;
     }
+    .form-select:disabled{
+        margin-top: auto;
+        margin-bottom: 50px;
+    }
     .ui-selectmenu-menu {
         border-radius: 100px;
     }
     .image-container {
-        width: 100%;
+        width: 496px;
         height: 350px;
         background: white;
     }
@@ -106,6 +114,7 @@
         justify-content: center;
     }
     .fw { width: 100%; }
+    .pd { padding: 8px; }
     .mt { margin-top: 16px; }
     .mb2 { margin-bottom: 16px; }
     .mb2 { margin-bottom: 32px; }
@@ -117,6 +126,9 @@
     #api {
         width: 100%;
     }
+    .form-check-input:before {
+        box-shadow: none !important;
+    }
     button {
         margin-left: auto;
         background-color: #0170FF;
@@ -125,7 +137,10 @@
         color: white;
         width: 352px;
         height: 56px;
-        margin-top: 76px;
+        margin-top: 41px;
+    }
+    button[disabled] {
+        background-color: #879DB5;
     }
     label {
         margin-bottom: 8px;
@@ -147,7 +162,7 @@
     .attrEntry {
         width: 100%;
     }
-    input {
+    .textInput {
         border: none;
         color: #001b39;
         height: 56px;
@@ -246,6 +261,15 @@
                     $("#account-register").remove();
                     $("#henco-title").after("<div class='fw mt'><div>Already have an account?</div>" +
                         "<div><a id='sign-up-link' href=''> -> Sign up here</a></div></div>");
+                    $("#continue").before("<div class='fw mt d-flex'><input class='form-check-input' type='checkbox' value='' id='checkTerms' /><div>I have read and agree to the MyHenco terms and conditions</div>");
+                    $("#continue").attr("disabled", true);
+                    $("#checkTerms").change(function(){
+                        if($(this).is(':checked')){
+                            $("#continue").attr("disabled", false);
+                        } else {
+                            $("#continue").attr("disabled", true);
+                        }
+                    });
                     $('#sign-up-link').click(function(){
                         parent.history.back();
                         return false;
@@ -270,7 +294,8 @@
                     $( ".telephone-country-select" ).selectmenu({
                         select: function( event, ui ) {
                             telephoneCountry = ui.item.value;
-                        }
+                        },
+                        position: {my : "bottom+130", at: "bottom+10" }
                     });
 
                     $( "#extension_phone_number" ).blur(function() {
@@ -289,7 +314,6 @@
 <body>
     <main>
         <div class="main d-flex">
-
             <div class="left-side">
                 <div class="image-container">
                     <div class="image-gradient">
@@ -305,17 +329,17 @@
                     <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
                     </br>
                     <div>Our goal is to provide a helpful and user-friendly experience for all of our stakeholders.</div>
-                    <select class="form-select" style="margin-top: 160px" aria-label="disabled language select" disabled>
+                    <select class="form-select" aria-label="disabled language select" disabled>
                         <option selected>English (UK)</option>
                     </select>
                 </div>
             </div>
-                <div style="width: 70%" class="right-side flex-column">
-                    <div class="fw d-flex justify-content-between" style="margin-bottom: 82px; margin-top: 82px">
+                <div style="width: 70%" class="right-side flex-column flex-centered">
+                    <div class="fw d-flex justify-content-between" style="margin-bottom: 60px">
                         <span class="title-txt">Sign Up</span>
                         <img src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
                     </div>
-                    <div id="api">
+                    <div id="api" style="margin-bottom: 82px; max-height: 80%px; overflow: auto">
 
                         <div class="heading">
                             <h1 role="heading">User Details</h1>
