@@ -166,7 +166,25 @@
         list-style-type: none;
     }
     .attrEntry {
+        display: grid;
+        grid-template-areas:
+                "field-label"
+                "field-input"
+                "field-error";
         width: 100%;
+    }
+    .attrEntry label {
+        grid-area: field-label;
+    }
+    .attrEntry .error {
+        grid-area: field-error;
+    }
+    .attrEntry input {
+        grid-area: field-input;
+    }
+    .error {
+        margin-top: 4px;
+        color: #E57373;
     }
     .textInput, #email, #password {
         border: none;
@@ -312,7 +330,7 @@
 
                     $( "#extension_phone_number" ).blur(function() {
                         if (!libphonenumber.isValidPhoneNumber(this.value, telephoneCountry)) {
-                            $(".extension_phone_number_li").append("<div class='phone-error'>phone nr is not valid</div>");
+                            $(".extension_phone_number_li").append("<div class='phone-error error'>Phone nr. is not valid</div>");
                         }
                     });
                     $( "#extension_phone_number" ).focus(function() {
@@ -368,10 +386,10 @@
                             <div id="attributeList" class="attr">
                                 <ul>
                                     <li class="EmailBox email_li">
-                                        <div class="attrEntry">
+                                        <div class="attrEntry validate">
                                             <label id="email_label" for="email">Email Address*
                                             </label>
-                                            <div class="error itemLevel" role="alert">
+                                            <div class="error itemLevel show" role="alert" aria-hidden="false" aria-label="">Please enter a valid email address.
                                             </div>
                                             <input id="email" class="textInput" type="email" placeholder="Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" title="Email address that can be used to contact you." autofocus="autofocus">
                                             <a class="helpLink tiny" href="javascript:void(0)" data-help="Email address that can be used to contact you.">What is this?
