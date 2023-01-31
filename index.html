@@ -295,6 +295,8 @@
                 // this means it's a registration page
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
+                   $( "ul" ).prepend( $( ".extension_first_name_li" ) );
+                   $( ".extension_first_name_li" ).after( $( ".extension_last_name_li" ) );
                    $( "#continue" ).html( "Sign up" )
                    $( "#extension_last_name_label" ).html( "Last name <span class=\"star\">*</span>" )
                    $( "#email_label" ).html( "Email address <span class=\"star\">*</span>" )
