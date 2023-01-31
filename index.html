@@ -185,7 +185,7 @@
         margin-top: 4px;
         color: #E57373;
     }
-    .textInput, #email, #password {
+    input {
         border: none;
         color: #001b39;
         height: 56px;
@@ -194,7 +194,6 @@
         padding: 16px;
     }
     input:focus {
-        border-bottom: 1px solid blue;
         outline: none;
     }
     .ui-selectmenu-button, .ui-selectmenu-button:hover {
@@ -292,6 +291,18 @@
                 $( "#account-register" ).append( $(".create p a") )
                 $( ".buttons" ).prepend( $(".password-label u") )
 
+
+                $( "input" ).blur(function() {
+                    if ($(this) !== $("#extension_phone_number")) {
+                        $(this).css('border-bottom', 'none')
+                    }
+                });
+                $( "input" ).focus(function() {
+                    if (!$(this).is($("#extension_phone_number")) ) {
+                        $(this).css('border-bottom', '1px solid blue')
+                    }
+                });
+
                 // this means it's a registration page
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
@@ -359,6 +370,12 @@
                     });
                     $( "#extension_phone_number" ).focus(function() {
                         $(".phone-error").remove();
+                    });
+                    $( "#extension_phone_number" ).blur(function() {
+                        $( ".telephone-input-container" ).css('border-bottom', 'none')
+                    });
+                    $( "#extension_phone_number" ).focus(function() {
+                        $( ".telephone-input-container" ).css('border-bottom', '1px solid blue')
                     });
                 }
             })
