@@ -268,7 +268,7 @@
         flex-direction: column;
     }
     .star {
-        color: red;
+        color: #E57373;;
     }
     .sign-up {
         font-size: 20px;
@@ -307,10 +307,14 @@
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
                    $( "ul" ).prepend( $( ".extension_first_name_li" ) );
+                   $( "ul" ).append( $( ".extension_Country_li" ) );
+                   $( "ul" ).append( $( ".extension_Workregion_li" ) );
+                   $( "ul" ).append( $( ".newPassword_li" ) );
+                   $( "ul" ).append( $( ".reenterPassword_li" ) );
                    $( ".extension_first_name_li" ).after( $( ".extension_last_name_li" ) );
                    $( "#continue" ).html( "Sign up" )
                    $( "#extension_last_name_label" ).html( "Last name <span class=\"star\">*</span>" )
-                   $( "#email_label" ).html( "Email address <span class=\"star\">*</span>" )
+                   $( "#email_label" ).html( "Email <span class=\"star\">*</span>" )
                    $( "#extension_last_name" ).attr("placeholder", "Last name" )
                    $( "#extension_first_name_label" ).html( "First name <span class=\"star\">*</span>" )
                    $( "#extension_first_name" ).attr( "placeholder", "First name" )
