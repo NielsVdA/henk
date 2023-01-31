@@ -284,6 +284,16 @@
         myHeaders.append('Access-Control-Allow-Origin', '*');
     </script>
     <script>
+        function checkIfFormValid () {
+            var isValid = true;
+            $("input").each(function() {
+                var element = $(this);
+                if (element.val() == "" && !(element.is(":checked"))) {
+                    isValid = false;
+                }
+            });
+            $("#continue").attr("disabled", !isValid);
+        }
         setTimeout(function(){
             $(document).ready(function() {
                 $( "#next" ).html( "Log in" )
@@ -296,6 +306,7 @@
                     if ($(this) !== $("#extension_phone_number")) {
                         $(this).css('border-bottom', 'none')
                     }
+                    checkIfFormValid();
                 });
                 $( "input" ).focus(function() {
                     if (!$(this).is($("#extension_phone_number")) ) {
@@ -312,6 +323,7 @@
                    $( "ul" ).append( $( ".newPassword_li" ) );
                    $( "ul" ).append( $( ".reenterPassword_li" ) );
                    $( ".extension_first_name_li" ).after( $( ".extension_last_name_li" ) );
+                   $( ".extension_first_name_li" ).focus();
                    $( "#continue" ).html( "Sign up" )
                    $( "#extension_last_name_label" ).html( "Last name <span class=\"star\">*</span>" )
                    $( "#email_label" ).html( "Email <span class=\"star\">*</span>" )
@@ -325,19 +337,14 @@
                    $( "#country_label" ).html( "Country <span class=\"star\">*</span>" )
                    $( "#extension_Companyname_label" ).html( "Company name <span class=\"star\">*</span>" )
                    $( "#extension_Country_label" ).html( "Country <span class=\"star\">*</span>" )
-                   $( "#extension_VAT_label" ).html( "VAT <span class=\"star\">*</span>" )
+                   $( "#extension_VAT_label" ).html( "VAT number <span class=\"star\">*</span>" )
                    $( "#extension_Workregion_label" ).html( "Work region <span class=\"star\">*</span>" )
                     $("#account-register").remove();
                     $("#henco-title").after("<div class='fw mt'><div class='sign-up'>Already have an account?</div>" +
                         "<div><a id='sign-up-link' class='sign-up' href=''> -> Login here</a></div></div>");
                     $("#continue").before("<div class='fw mt d-flex'><input class='form-check-input' type='checkbox' value='' id='checkTerms' /><div>I have read and agree to the MyHenco terms and conditions</div>");
-                    $("#continue").attr("disabled", true);
                     $("#checkTerms").change(function(){
-                        if($(this).is(':checked')){
-                            $("#continue").attr("disabled", false);
-                        } else {
-                            $("#continue").attr("disabled", true);
-                        }
+                        checkIfFormValid();
                     });
                     $('#sign-up-link').click(function(){
                         parent.history.back();
