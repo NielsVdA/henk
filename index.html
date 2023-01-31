@@ -270,6 +270,10 @@
     </style>
 
     <script>
+        var myHeaders = new Headers();
+        myHeaders.append('Access-Control-Allow-Origin', '*');
+    </script>
+    <script>
         setTimeout(function(){
             $(document).ready(function() {
                 $( "#next" ).html( "Log in" )
