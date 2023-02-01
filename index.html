@@ -84,8 +84,8 @@
         height: 56px;
     }
     .form-select:disabled{
-        margin-top: auto;
-        margin-bottom: 150px;
+        border: none;
+        width: 150px;
     }
     .ui-selectmenu-menu {
         border-radius: 100px;
@@ -274,6 +274,10 @@
         font-size: 20px;
         font-weight: 400;
     }
+    .henco-logo {
+        align-self: flex-start;
+        margin-top: 64px;
+    }
     /*hide ms*/
     #cancel,.intro,.divider,.create,.helpLink,h1,.itemLevel { display: none; }
 
@@ -411,15 +415,15 @@
                     <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
                     </br>
                     <div>Our goal is to provide a helpful and user-friendly experience for all of our stakeholders.</div>
-                    <select class="form-select" aria-label="disabled language select" disabled>
-                        <option selected>English (UK)</option>
-                    </select>
+                    <img class="henco-logo" src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
                 </div>
             </div>
                 <div style="width: 70%" class="right-side flex-column flex-centered">
                     <div class="fw d-flex justify-content-between" style="margin-bottom: 60px">
                         <span class="title-txt">Sign Up</span>
-                        <img src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
+                        <select class="form-select" aria-label="disabled language select" disabled>
+                            <option selected>English (UK)</option>
+                        </select>
                     </div>
                     <div id="api">
 
