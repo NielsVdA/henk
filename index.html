@@ -316,15 +316,15 @@
         //     });
         //     $("#continue").attr("disabled", !isValid);
         // }
-        // setTimeout(function(){
-        //     $(document).ready(function() {
-        //         $( "#next" ).html( "Log in" )
-        //         $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
-        //         $( "#account-register" ).append( $(".create p a") )
-        //         $( ".buttons" ).prepend( $(".password-label u") )
-        //
-        //
-        //         $( "input" ).blur(function() {
+        setTimeout(function(){
+            $(document).ready(function() {
+                $( "#next" ).html( "Log in" )
+                $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
+                $( "#account-register" ).append( $(".create p a") )
+                $( ".buttons" ).prepend( $(".password-label u") )
+
+
+                // $( "input" ).blur(function() {
         //             if ($(this) !== $("#extension_phone_number")) {
         //                 $(this).css('border-bottom', 'none')
         //             }
@@ -362,16 +362,16 @@
         //            $( "#extension_VAT_label" ).html( "VAT number <span class=\"star\">*</span>" )
         //            $( "#extension_Workregion_label" ).html( "Work region <span class=\"star\">*</span>" )
         //             $("#account-register").remove();
-        //             $("#henco-title").after("<div class='fw mt'><div class='sign-up'>Already have an account?</div>" +
-        //                 "<div><a id='sign-up-link' class='sign-up' href=''> -> Login here</a></div></div>");
+                    $("#henco-title").after("<div class='fw mt'><div class='sign-up'>Already have an account?</div>" +
+                        "<div><a id='sign-up-link' class='sign-up' href=''> -> Login here</a></div></div>");
         //             $("#continue").before("<div class='fw mt d-flex'><input class='form-check-input' type='checkbox' value='' id='checkTerms' /><div>I have read and agree to the MyHenco terms and conditions</div>");
         //             $("#checkTerms").change(function(){
         //                 checkIfFormValid();
         //             });
-        //             $('#sign-up-link').click(function(){
-        //                 parent.history.back();
-        //                 return false;
-        //             })
+                    $('#sign-up-link').click(function(){
+                        parent.history.back();
+                        return false;
+                    })
         //
         //             $( "#extension_phone_number" ).wrap( "<div class=\"telephone-input-container\"></div>" );
         //             $( ".telephone-input-container" ).prepend( "  <select class=\"telephone-country-select\">\n" +
@@ -431,8 +431,8 @@
         //             };
         //             new autocomplete(basicAutocomplete, {filter: dataFilter});
         //         }
-        //     })
-        // }, 150)
+            })
+        }, 150)
     </script>
 </head>
 <body>
