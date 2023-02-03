@@ -288,10 +288,10 @@
                 "autocomplete-label"
                 "autocomplete-input";
     }
-    #city {
+    #extension_VAT {
         grid-area: autocomplete-input;
     }
-    #city_label {
+    #extension_VAT_label {
         grid-area: autocomplete-label;
     }
     .autocomplete-dropdown {
@@ -411,25 +411,25 @@
                         $( ".telephone-input-container" ).css('border-bottom', '1px solid blue')
                     });
 
-                    $( "#city").wrap( "<div id=\"city-autocomplete-container\" class=\"autocomplete-container\"></div>" );
-                    $( "#city").addClass( "form-control" );
-                    $( "#city-autocomplete-container").append( $( "#city_label"));
-                    $( "#city").change( function() {
-                        console.log('change city input', this.value );
+                    $( "#extension_VAT").wrap( "<div id=\"extension_VAT-autocomplete-container\" class=\"autocomplete-container\"></div>" );
+                    $( "#extension_VAT").addClass( "form-control" );
+                    $( "#extension_VAT-autocomplete-container").append( $( "#extension_VAT_label"));
+                    $( "#extension_VAT").change( function() {
+                        console.log('change extension_VAT input', this.value );
                     } );
                     $( "#postalCode").change( function() {
                         console.log('change postal', this.value );
                     } );
 
 
-                    const basicAutocomplete = document.querySelector('#city-autocomplete-container');
+                    const basicAutocomplete = document.querySelector('#extension_VAT-autocomplete-container');
                     const data = ['One', 'Two', 'Three', 'Four', 'Five','bOne','cOne', 'bTwo', 'cTwo', 'bThree', 'cThree', 'bFour', 'cFour', 'bFive', 'cFive',];
                     const dataFilter = (value) => {
                         return data.filter((item) => {
                             return item.toLowerCase().startsWith(value.toLowerCase());
                         });
                     };
-                    $('#city-autocomplete-container').autocomplete({filter: dataFilter});
+                    $('#extension_VAT-autocomplete-container').autocomplete({filter: dataFilter});
                 }
             })
         }, 150)
@@ -561,15 +561,14 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li class="TextBox city_li">
+                                    <li class="TextBox extension_VAT_li">
                                         <div class="attrEntry">
-                                            <label id="city_label" for="city">City*
+                                            <label id="extension_VAT_label" for="extension_VAT">
+                                                VAT number<span class="star">*</span>
                                             </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="city" class="textInput" type="text" placeholder="City" title="The city in which you are located.">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="The city in which you are located.">What is this?
-                                            </a>
+                                            <div class="error itemLevel" role="alert"></div>
+                                            <input id="extension_VAT" class="textInput" type="text" placeholder="VAT" title="VAT" aria-required="true" style="border-bottom: medium none;">
+                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="VAT">What is this?</a>
                                         </div>
                                     </li>
                                     <li class="TextBox postalCode_li">
