@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+    <link href="https://nielsvda.github.io/henk/docs/autocomplete.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -280,6 +281,26 @@
         align-self: flex-start;
         margin-top: 64px;
     }
+    .autocomplete-container {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+                "autocomplete-label"
+                "autocomplete-input";
+    }
+    #city {
+        grid-area: autocomplete-input;
+    }
+    #city_label {
+        grid-area: autocomplete-label;
+    }
+    .autocomplete-dropdown {
+        overflow-y: auto;
+        cursor: pointer;
+    }
+    .autocomplete-dropdown-container {
+        background: white;
+    }
     /*hide ms*/
     #cancel,.intro,.divider,.create,.helpLink,h1 { display: none; }
 
@@ -389,6 +410,26 @@
                     $( "#extension_phone_number" ).focus(function() {
                         $( ".telephone-input-container" ).css('border-bottom', '1px solid blue')
                     });
+
+                    $( "#city").wrap( "<div id=\"city-autocomplete-container\" class=\"autocomplete-container\"></div>" );
+                    $( "#city").addClass( "form-control" );
+                    $( "#city-autocomplete-container").append( $( "#city_label"));
+                    $( "#city").change( function() {
+                        console.log('change city input', this.value );
+                    } );
+                    $( "#postalCode").change( function() {
+                        console.log('change postal', this.value );
+                    } );
+
+
+                    const basicAutocomplete = document.querySelector('#city-autocomplete-container');
+                    const data = ['One', 'Two', 'Three', 'Four', 'Five','bOne','cOne', 'bTwo', 'cTwo', 'bThree', 'cThree', 'bFour', 'cFour', 'bFive', 'cFive',];
+                    const dataFilter = (value) => {
+                        return data.filter((item) => {
+                            return item.toLowerCase().startsWith(value.toLowerCase());
+                        });
+                    };
+                    $('#city-autocomplete-container').autocomplete({filter: dataFilter});
                 }
             })
         }, 150)
@@ -422,6 +463,10 @@
                             <option selected>English (UK)</option>
                         </select>
                     </div>
+                    <div id="auto-select" class="form-outline">
+                         <input type="text" id="form1" class="form-control" />
+                         <label class="form-label" for="form1">Example label</label>
+                     </div>
                     <div id="api">
 
                         <div class="heading">
