@@ -429,7 +429,7 @@
                             return item.toLowerCase().startsWith(value.toLowerCase());
                         });
                     };
-                    $('#extension_VAT-autocomplete-container').autocomplete({filter: dataFilter});
+                    new autocomplete(basicAutocomplete, {filter: dataFilter});
                 }
             })
         }, 150)
