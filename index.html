@@ -319,8 +319,8 @@
         setTimeout(function(){
             $(document).ready(function() {
                 $( "#next" ).html( "Log in" )
-                $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
-                $( "#account-register" ).append( $(".create p a") )
+                // $( ".create p a" ).html( "</br> -> <span>Sign up here</span>" )
+                // $( "#account-register" ).append( $(".create p a") )
                 $( ".buttons" ).prepend( $(".password-label u") )
 
 
@@ -449,6 +449,8 @@
                     <div id="henco-title" class="align-self-start title-txt mt-h bold">MyHenco</div>
                     <div id="account-register">
                         <span>Don't have an account yet?</span>
+                        <br/>
+                        <a href="https://henco-staging.staging.eks.romcore.cloud/login/login">-> Sign up here</a>
                     </div>
                     <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
                     </br>
