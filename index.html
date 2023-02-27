@@ -56,27 +56,103 @@
         overflow-y: auto;
         overflow-x: hidden
     }
-    .left-side {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        width: 496px;
-        /*height: 100%;*/
-        border-radius: 0px 0px 200px 0px;
-        background-color: #001b39;
+
+    /* mobile */
+    @media only screen and (max-width:608px) {
+        .root {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f3ff;
+        }
+
+        .left-side {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            width: 100vw;
+            height: 800px;
+            border-radius: 0px 0px 200px 0px;
+            background-color: #001b39;
+        }
+
+        .right-side {
+            height: 100%;
+            overflow: auto;
+            display: flex;
+            padding: 24px 24px 24px 24px;
+            flex: 1;
+        }
+        .image-container {
+            width: 100vw;
+            height: 350px;
+            background: white;
+        }
+        .henco-logo {
+            align-self: flex-start;
+            margin-top: 30px;
+            width: 100px;
+        }
+        #attributeList ul {
+            padding-left: 0 !important;
+            list-style-type: none;
+        }
     }
+
+    /* desktop */
+    @media only screen and (min-width:609px) {
+        .root {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+            background-color: #f0f3ff;
+        }
+
+        .left-side {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            width: 496px;
+            height: 100%;
+            border-radius: 0px 0px 200px 0px;
+            background-color: #001b39;
+        }
+
+        .right-side {
+            width: 70%;
+            height: 100%;
+            overflow: auto;
+            display: flex;
+            padding: 8px 82px 8px 82px;
+            flex: 1;
+        }
+        .image-container {
+            width: 496px;
+            height: 350px;
+            background: white;
+        }
+        .henco-logo {
+            align-self: flex-start;
+            margin-top: 64px;
+        }
+        #attributeList ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 16px;
+            column-gap: 24px;
+            padding-left: 0 !important;
+            list-style-type: none;
+        }
+    }
+
     .left-text-container {
         flex-direction: column;
         display: flex;
         align-items: center;
-        flex: 1;
-    }
-    .right-side {
-        height: 100%;
-        overflow: auto;
-        display: flex;
-        padding: 8px 82px 8px 82px;
         flex: 1;
     }
 
@@ -94,11 +170,6 @@
     }
     .ui-selectmenu-menu {
         border-radius: 100px;
-    }
-    .image-container {
-        width: 496px;
-        height: 350px;
-        background: white;
     }
     .image-gradient {
         width: 100%;
@@ -159,14 +230,6 @@
     }
     ::placeholder {
         color: #879DB5;
-    }
-    #attributeList ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        row-gap: 16px;
-        column-gap: 24px;
-        padding-left: 0 !important;
-        list-style-type: none;
     }
     .attrEntry {
         display: grid;
@@ -279,10 +342,6 @@
         font-size: 20px;
         font-weight: 400;
     }
-    .henco-logo {
-        align-self: flex-start;
-        margin-top: 64px;
-    }
     .autocomplete-container {
         display: grid;
         grid-template-rows: auto auto;
@@ -341,28 +400,28 @@
                 // this means it's a registration page
                 var isRegistration = !!$(".DropdownSingleSelect").length;
                 if (isRegistration) {
-                   $( "ul" ).prepend( $( ".surname_li" ) );
-                   $( "ul" ).append( $( ".extension_Country_li" ) );
-                   $( "ul" ).append( $( ".extension_Workregion_li" ) );
-                   $( "ul" ).append( $( ".newPassword_li" ) );
-                   $( "ul" ).append( $( ".reenterPassword_li" ) );
-                   $( ".surname_li" ).after( $( ".givenName_li" ) );
-                   $( ".surname_li" ).focus();
-                   $( "#continue" ).html( "Sign up" )
-                   $( "#surname_label" ).html( "Last name <span class=\"star\">*</span>" )
-                   $( "#email_label" ).html( "Email <span class=\"star\">*</span>" )
-                   $( "#surname" ).attr("placeholder", "Last name" )
-                   $( "#givenName_label" ).html( "First name <span class=\"star\">*</span>" )
-                   $( "#givenName" ).attr( "placeholder", "First name" )
-                   $( "#extension_phone_number_label" ).html( "Phone number <span class=\"star\">*</span>" )
-                   $( "#extension_phone_number" ).attr( "placeholder", "Phone number" )
-                   $( "#newPassword_label" ).html( "Password <span class=\"star\">*</span>" )
-                   $( "#reenterPassword_label" ).html( "Repeat password <span class=\"star\">*</span>" )
-                   $( "#country_label" ).html( "Country <span class=\"star\">*</span>" )
-                   $( "#extension_Companyname_label" ).html( "Company name <span class=\"star\">*</span>" )
-                   $( "#extension_Country_label" ).html( "Country <span class=\"star\">*</span>" )
-                   $( "#extension_VAT_label" ).html( "VAT number <span class=\"star\">*</span>" )
-                   $( "#extension_Workregion_label" ).html( "Work region <span class=\"star\">*</span>" )
+                    $( "ul" ).prepend( $( ".surname_li" ) );
+                    $( "ul" ).append( $( ".extension_Country_li" ) );
+                    $( "ul" ).append( $( ".extension_Workregion_li" ) );
+                    $( "ul" ).append( $( ".newPassword_li" ) );
+                    $( "ul" ).append( $( ".reenterPassword_li" ) );
+                    $( ".surname_li" ).after( $( ".givenName_li" ) );
+                    $( ".surname_li" ).focus();
+                    $( "#continue" ).html( "Sign up" )
+                    $( "#surname_label" ).html( "Last name <span class=\"star\">*</span>" )
+                    $( "#email_label" ).html( "Email <span class=\"star\">*</span>" )
+                    $( "#surname" ).attr("placeholder", "Last name" )
+                    $( "#givenName_label" ).html( "First name <span class=\"star\">*</span>" )
+                    $( "#givenName" ).attr( "placeholder", "First name" )
+                    $( "#extension_phone_number_label" ).html( "Phone number <span class=\"star\">*</span>" )
+                    $( "#extension_phone_number" ).attr( "placeholder", "Phone number" )
+                    $( "#newPassword_label" ).html( "Password <span class=\"star\">*</span>" )
+                    $( "#reenterPassword_label" ).html( "Repeat password <span class=\"star\">*</span>" )
+                    $( "#country_label" ).html( "Country <span class=\"star\">*</span>" )
+                    $( "#extension_Companyname_label" ).html( "Company name <span class=\"star\">*</span>" )
+                    $( "#extension_Country_label" ).html( "Country <span class=\"star\">*</span>" )
+                    $( "#extension_VAT_label" ).html( "VAT number <span class=\"star\">*</span>" )
+                    $( "#extension_Workregion_label" ).html( "Work region <span class=\"star\">*</span>" )
                     $("#account-register").remove();
                     $("#henco-title").after("<div class='fw mt'><div class='sign-up'>Already have an account?</div>" +
                         "<div><a id='sign-up-link' class='sign-up' href=''> -> Login here</a></div></div>");
@@ -438,241 +497,241 @@
     </script>
 </head>
 <body>
-    <main>
-        <div class="main d-flex">
-            <div class="left-side">
-                <div class="image-container">
-                    <div class="image-gradient">
-                        <img class="gradient-image" src="https://nielsvda.github.io/henk/docs/assets/image.png" alt="tubes">
-                    </div>
-                </div>
-                <div style="width: 288px" class="left-text-container">
-                    <div class="align-self-start title-txt">Welcome to</div>
-                    <div id="henco-title" class="align-self-start title-txt mt-h bold">MyHenco</div>
-                    <div id="account-register">
-                        <span>Don't have an account yet?</span>
-                        <br/>
-                        <a href="https://henco-staging.staging.eks.romcore.cloud/login/register">-> Sign up here</a>
-                    </div>
-                    <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
-                    </br>
-                    <div>Our goal is to provide a helpful and user-friendly experience for all of our stakeholders.</div>
-                    <img class="henco-logo" src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
+<main>
+    <div class="root">
+        <div class="left-side">
+            <div class="image-container">
+                <div class="image-gradient">
+                    <img class="gradient-image" src="https://nielsvda.github.io/henk/docs/assets/image.png" alt="tubes">
                 </div>
             </div>
-                <div style="width: 70%" class="right-side flex-column flex-centered">
-                    <div class="fw d-flex justify-content-between" style="margin-bottom: 60px">
-                        <span class="title-txt">Sign Up</span>
-                        <select class="form-select" aria-label="disabled language select" disabled>
-                            <option selected>English (UK)</option>
-                        </select>
-                    </div>
-                    <div id="api">
-
-                        <div class="heading">
-                            <h1 role="heading">User Details</h1>
-                        </div>
-                        <div class="buttons">
-                        </div>
-                        <div class="intro">
-                            <p>Please provide the following details.</p>
-                        </div>
-                        <form id="attributeVerification" action="JavaScript:void(0);">
-                            <div id="requiredFieldMissing" class="error pageLevel" style="display: none;" aria-hidden="true">A required field is missing. Please fill out all required fields and try again.</div>
-                            <div id="fieldIncorrect" class="error pageLevel" style="display: none;" aria-hidden="true">One or more fields are filled out incorrectly. Please check your entries and try again.</div>
-                            <div id="claimVerificationServerError" class="error pageLevel" style="display: none;" aria-hidden="true"></div>
-
-
-                            <div id="attributeList" class="attr">
-                                <ul>
-                                    <li class="TextBox email_li">
-                                        <div class="attrEntry">
-                                            <label id="email_label" for="email">Email Address*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="email" class="textInput" type="text" placeholder="Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" title="Email address that can be used to contact you." autofocus="autofocus">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Email address that can be used to contact you.">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="Password newPassword_li">
-                                        <div class="attrEntry">
-                                            <label id="newPassword_label" for="newPassword">New Password*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="newPassword" class="textInput" type="password" placeholder="New Password" title="Enter new password" autocomplete="new-password" aria-required="true">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Enter new password">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="Password reenterPassword_li">
-                                        <div class="attrEntry">
-                                            <label id="reenterPassword_label" for="reenterPassword">Confirm New Password*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="reenterPassword" class="textInput" type="password" placeholder="Confirm New Password" title="Confirm new password" autocomplete="new-password" aria-required="true">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Confirm new password">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox givenName_li">
-                                        <div class="attrEntry">
-                                            <label id="givenName_label" for="givenName">Given Name*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="givenName" class="textInput" type="text" placeholder="Given Name" title="Your given name (also known as first name).">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Your given name (also known as first name).">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox surname_li">
-                                        <div class="attrEntry">
-                                            <label id="surname_label" for="surname">Surname*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="surname" class="textInput" type="text" placeholder="Surname" title="Your surname (also known as family name or last name).">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Your surname (also known as family name or last name).">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox extension_phone_number_li">
-                                        <div class="attrEntry">
-                                            <label id="extension_phone_number_label" for="extension_phone_number">phone_number*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="extension_phone_number" class="textInput" type="text" placeholder="phone_number" aria-required="true">
-                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox extension_Companyname_li">
-                                        <div class="attrEntry">
-                                            <label id="extension_Companyname_label" for="extension_Companyname">Company name*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="extension_Companyname" class="textInput" type="text" placeholder="Company name" aria-required="true">
-                                            <a class="helpLink tiny" href="javascript:void(0)">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox extension_VAT_li">
-                                        <div class="attrEntry">
-                                            <label id="extension_VAT_label" for="extension_VAT">VAT*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="extension_VAT" class="textInput" type="text" placeholder="VAT" title="VAT" aria-required="true">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="VAT">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="DropdownSingleSelect extension_Workregion_li">
-                                        <div class="attrEntry">
-                                            <label id="extension_Workregion_label" for="extension_Workregion">Work region*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <select class="dropdown_single" id="extension_Workregion" aria-label="Work region">
-                                                <option style="display:none" disabled="disabled" value="" selected="selected">Work region
-                                                </option>
-                                                <option value="antwerp">Antwerp
-                                                </option>
-                                                <option value="limburg">Limburg
-                                                </option>
-                                            </select>
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="work region">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="TextBox extension_Country_li">
-                                        <div class="attrEntry">
-                                            <label id="extension_Country_label" for="extension_Country">Country*
-                                            </label>
-                                            <div class="error itemLevel" role="alert">
-                                            </div>
-                                            <input id="extension_Country" class="textInput" type="text" placeholder="Country" title="Country">
-                                            <a class="helpLink tiny" href="javascript:void(0)" data-help="Country">What is this?
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-
-                            <div class="buttons">
-                                <button id="continue" type="submit" form="attributeVerification" aria-disabled="false" aria-label="Create">Create</button><button id="cancel" aria-label="Cancel" formnovalidate="">Cancel</button>
-                            </div>
-
-                            <div class="verifying-modal">
-                                <div id="verifying_blurb"></div>
-                            </div>
-                        </form>
-
-
-
-
-                        <!--                    <div class="heading">-->
-<!--                        <h1 role="heading">Sign in</h1>-->
-<!--                    </div>-->
-<!--                    <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount" aria-label="Sign in with your email address">-->
-<!--                        <div class="intro">-->
-<!--                            <h2 aria-level="1">-->
-<!--                                Sign in with your email address-->
-<!--                            </h2>-->
-<!--                        </div>-->
-<!--                        <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">-->
-<!--                            <p></p>-->
-<!--                        </div>-->
-<!--                        <div class="entry">-->
-<!--                            <div class="entry-item">-->
-<!--                                <label for="email">-->
-<!--                                    Email Address-->
-<!--                                </label>-->
-<!--                                <div class="error itemLevel" aria-hidden="true" role="alert" style="display: none;">-->
-<!--                                    <p></p>-->
-<!--                                </div>-->
-<!--                                <input type="email" id="email" name="Email Address" title="Please enter a valid Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" autofocus="" placeholder="Email Address" aria-label="Email Address">-->
-<!--                            </div>-->
-<!--                            <div class="entry-item">-->
-<!--                                <div class="password-label">-->
-<!--                                    <label for="password">Password</label>-->
-<!--                                    <u><a id="forgotPassword" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/forgotPassword?csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Forgot your password?</a></u>-->
-<!--                                </div>-->
-<!--                                <div class="error itemLevel" aria-hidden="true" style="display: none;">-->
-<!--                                    <p role="alert"></p>-->
-<!--                                </div>-->
-<!--                                <input type="password" id="password" name="Password" placeholder="Password" aria-label="Password" autocomplete="current-password" aria-required="true">-->
-<!--                            </div>-->
-<!--                            <div class="working"></div>-->
-
-
-<!--                            <div class="buttons">-->
-<!--                                <button id="next" type="submit" form="localAccountForm">Sign in</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="divider">-->
-<!--                            <h2>OR</h2>-->
-<!--                        </div>-->
-<!--                        <div class="create">-->
-<!--                            <p>-->
-<!--                                Don't have an account?<a id="createAccount" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Sign up now</a>-->
-<!--                            </p>-->
-<!--                        </div>-->
-<!--                    </form>-->
-
+            <div style="width: 288px" class="left-text-container">
+                <div class="align-self-start title-txt">Welcome to</div>
+                <div id="henco-title" class="align-self-start title-txt mt-h bold">MyHenco</div>
+                <div id="account-register">
+                    <span>Don't have an account yet?</span>
+                    <br/>
+                    <a href="https://henco-staging.staging.eks.romcore.cloud/login/register">-> Sign up here</a>
                 </div>
+                <div class="mt">Welcome to the Myhenco platform! We are glad you decided to join us.</div>
+                </br>
+                <div>Our goal is to provide a helpful and user-friendly experience for all of our stakeholders.</div>
+                <img class="henco-logo" src="https://nielsvda.github.io/henk/docs/assets/logo.png" alt="logo">
             </div>
         </div>
-    </main>
+        <div class="right-side flex-column flex-centered">
+            <div class="fw d-flex justify-content-between" style="margin-bottom: 60px">
+                <span class="title-txt">Sign Up</span>
+                <select class="form-select" aria-label="disabled language select" disabled>
+                    <option selected>English (UK)</option>
+                </select>
+            </div>
+            <div id="api">
 
-    <script src="https://nielsvda.github.io/henk/docs/autocomplete.min.js"></script>
+                <div class="heading">
+                    <h1 role="heading">User Details</h1>
+                </div>
+                <div class="buttons">
+                </div>
+                <div class="intro">
+                    <p>Please provide the following details.</p>
+                </div>
+                <form id="attributeVerification" action="JavaScript:void(0);">
+                    <div id="requiredFieldMissing" class="error pageLevel" style="display: none;" aria-hidden="true">A required field is missing. Please fill out all required fields and try again.</div>
+                    <div id="fieldIncorrect" class="error pageLevel" style="display: none;" aria-hidden="true">One or more fields are filled out incorrectly. Please check your entries and try again.</div>
+                    <div id="claimVerificationServerError" class="error pageLevel" style="display: none;" aria-hidden="true"></div>
+
+
+                    <div id="attributeList" class="attr">
+                        <ul>
+                            <li class="TextBox email_li">
+                                <div class="attrEntry">
+                                    <label id="email_label" for="email">Email Address*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="email" class="textInput" type="text" placeholder="Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" title="Email address that can be used to contact you." autofocus="autofocus">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Email address that can be used to contact you.">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="Password newPassword_li">
+                                <div class="attrEntry">
+                                    <label id="newPassword_label" for="newPassword">New Password*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="newPassword" class="textInput" type="password" placeholder="New Password" title="Enter new password" autocomplete="new-password" aria-required="true">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Enter new password">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="Password reenterPassword_li">
+                                <div class="attrEntry">
+                                    <label id="reenterPassword_label" for="reenterPassword">Confirm New Password*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="reenterPassword" class="textInput" type="password" placeholder="Confirm New Password" title="Confirm new password" autocomplete="new-password" aria-required="true">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Confirm new password">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox givenName_li">
+                                <div class="attrEntry">
+                                    <label id="givenName_label" for="givenName">Given Name*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="givenName" class="textInput" type="text" placeholder="Given Name" title="Your given name (also known as first name).">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Your given name (also known as first name).">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox surname_li">
+                                <div class="attrEntry">
+                                    <label id="surname_label" for="surname">Surname*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="surname" class="textInput" type="text" placeholder="Surname" title="Your surname (also known as family name or last name).">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Your surname (also known as family name or last name).">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox extension_phone_number_li">
+                                <div class="attrEntry">
+                                    <label id="extension_phone_number_label" for="extension_phone_number">phone_number*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="extension_phone_number" class="textInput" type="text" placeholder="phone_number" aria-required="true">
+                                    <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox extension_Companyname_li">
+                                <div class="attrEntry">
+                                    <label id="extension_Companyname_label" for="extension_Companyname">Company name*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="extension_Companyname" class="textInput" type="text" placeholder="Company name" aria-required="true">
+                                    <a class="helpLink tiny" href="javascript:void(0)">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox extension_VAT_li">
+                                <div class="attrEntry">
+                                    <label id="extension_VAT_label" for="extension_VAT">VAT*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="extension_VAT" class="textInput" type="text" placeholder="VAT" title="VAT" aria-required="true">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="VAT">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="DropdownSingleSelect extension_Workregion_li">
+                                <div class="attrEntry">
+                                    <label id="extension_Workregion_label" for="extension_Workregion">Work region*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <select class="dropdown_single" id="extension_Workregion" aria-label="Work region">
+                                        <option style="display:none" disabled="disabled" value="" selected="selected">Work region
+                                        </option>
+                                        <option value="antwerp">Antwerp
+                                        </option>
+                                        <option value="limburg">Limburg
+                                        </option>
+                                    </select>
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="work region">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="TextBox extension_Country_li">
+                                <div class="attrEntry">
+                                    <label id="extension_Country_label" for="extension_Country">Country*
+                                    </label>
+                                    <div class="error itemLevel" role="alert">
+                                    </div>
+                                    <input id="extension_Country" class="textInput" type="text" placeholder="Country" title="Country">
+                                    <a class="helpLink tiny" href="javascript:void(0)" data-help="Country">What is this?
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="buttons">
+                        <button id="continue" type="submit" form="attributeVerification" aria-disabled="false" aria-label="Create">Create</button><button id="cancel" aria-label="Cancel" formnovalidate="">Cancel</button>
+                    </div>
+
+                    <div class="verifying-modal">
+                        <div id="verifying_blurb"></div>
+                    </div>
+                </form>
+
+
+
+
+                <!--                    <div class="heading">-->
+                <!--                        <h1 role="heading">Sign in</h1>-->
+                <!--                    </div>-->
+                <!--                    <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount" aria-label="Sign in with your email address">-->
+                <!--                        <div class="intro">-->
+                <!--                            <h2 aria-level="1">-->
+                <!--                                Sign in with your email address-->
+                <!--                            </h2>-->
+                <!--                        </div>-->
+                <!--                        <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">-->
+                <!--                            <p></p>-->
+                <!--                        </div>-->
+                <!--                        <div class="entry">-->
+                <!--                            <div class="entry-item">-->
+                <!--                                <label for="email">-->
+                <!--                                    Email Address-->
+                <!--                                </label>-->
+                <!--                                <div class="error itemLevel" aria-hidden="true" role="alert" style="display: none;">-->
+                <!--                                    <p></p>-->
+                <!--                                </div>-->
+                <!--                                <input type="email" id="email" name="Email Address" title="Please enter a valid Email Address" pattern="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" autofocus="" placeholder="Email Address" aria-label="Email Address">-->
+                <!--                            </div>-->
+                <!--                            <div class="entry-item">-->
+                <!--                                <div class="password-label">-->
+                <!--                                    <label for="password">Password</label>-->
+                <!--                                    <u><a id="forgotPassword" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/forgotPassword?csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Forgot your password?</a></u>-->
+                <!--                                </div>-->
+                <!--                                <div class="error itemLevel" aria-hidden="true" style="display: none;">-->
+                <!--                                    <p role="alert"></p>-->
+                <!--                                </div>-->
+                <!--                                <input type="password" id="password" name="Password" placeholder="Password" aria-label="Password" autocomplete="current-password" aria-required="true">-->
+                <!--                            </div>-->
+                <!--                            <div class="working"></div>-->
+
+
+                <!--                            <div class="buttons">-->
+                <!--                                <button id="next" type="submit" form="localAccountForm">Sign in</button>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="divider">-->
+                <!--                            <h2>OR</h2>-->
+                <!--                        </div>-->
+                <!--                        <div class="create">-->
+                <!--                            <p>-->
+                <!--                                Don't have an account?<a id="createAccount" href="/myhenco.onmicrosoft.com/B2C_1_signUpSignInNormalUsers/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=NHY0Ym1SekRFL2h6VkErRXF3TGdLSDY5VXQxdzN1VXBrNmQrcnh5a1NRVDEyeEV2aW9ETTVMaU4yQitZZnhpVHhRNUNCQytSbis4UW4xSHhjM0lFUEE9PTsyMDIzLTAxLTEzVDE1OjM5OjQwLjQzOTg1Mlo7V1dHOUtmVWtnbXRDL3MveHpsa3RyUT09O3siT3JjaGVzdHJhdGlvblN0ZXAiOjF9&amp;tx=StateProperties=eyJUSUQiOiI0YjdkYjk5Mi0zNDY0LTRiNmQtYTg5MS04MWMwYzEyMDk2NDEifQ&amp;p=B2C_1_signUpSignInNormalUsers">Sign up now</a>-->
+                <!--                            </p>-->
+                <!--                        </div>-->
+                <!--                    </form>-->
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://nielsvda.github.io/henk/docs/autocomplete.min.js"></script>
 
 </body>
 </html>
